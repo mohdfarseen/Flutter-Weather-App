@@ -1,5 +1,5 @@
 name: weatherapp
-description: "A new Flutter project."
+description: A new Flutter project.
 
 publish_to: 'none'
 
@@ -13,16 +13,20 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-
-  # ✅ Added Packages
-  http: ^0.13.6          # For API requests
-  provider: ^6.1.2       # For state management (theme toggle)
+  http: ^1.4.0             # ✅ Updated to latest stable
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0    # ✅ Updated to latest lint version
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/sunny.jpg
+    - assets/cloudy.jpg
+    - assets/rainy.jpg
+    - assets/snow.jpg
+    - assets/default.jpg
