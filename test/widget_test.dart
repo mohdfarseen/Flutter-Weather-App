@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:weatherapp/main.dart'; // Make sure this matches your app package name
+import 'package:weatherapp/main.dart'; // Import the main app file
 
 void main() {
   testWidgets('WeatherApp basic UI loads', (WidgetTester tester) async {
