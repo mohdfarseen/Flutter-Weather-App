@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/weather_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:weatherapp/login_screen.dart';
+import 'package:weatherapp/user_provider.dart';
+import 'package:weatherapp/weather_screen.dart'; // We'll need this for authenticated state
 
 void main() {
-  runApp(const WeatherApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+      child: const WeatherApp(),
+    ),
+  );
 }
 
 class WeatherApp extends StatefulWidget {
@@ -24,10 +32,18 @@ class _WeatherAppState extends State<WeatherApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // ✅ Hide the debug banner
+      debugShowCheckedModeBanner: false,
       title: 'Weather App',
       theme: isDarkMode ? ThemeData.dark() : ThemeData.light(),
-      home: WeatherScreen(toggleTheme: toggleTheme),
+      home: Consumer<UserProvider>(
+        builder: (context, userProvider, child) {
+          if (userProvider.isAuthenticated) {
+            return WeatherScreen(toggleTheme: toggleTheme);
+          } else {
+            return LoginScreen(toggleTheme: toggleTheme);
+          }
+        },
+      ),
     );
   }
 }
